@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Melissa · 20</title>
+  <style>
+    :root{
+      --bg:#0b0b10;
+      --card:rgba(255,255,255,.07);
+      --line:rgba(255,255,255,.12);
+      --text:#ffffff;
+      --muted:rgba(255,255,255,.72);
+      --pink:#ff4fa3;
+      --pink2:#ffb3d6;
+      --shadow:0 18px 45px rgba(0,0,0,.48);
+      --r:18px;
+      font-family:-apple-system,BlinkMacSystemFont,Inter,system-ui,Segoe UI,Roboto,Arial;
+    }
+
+    body{
+      margin:0;
+      color:var(--text);
+      background:
+        radial-gradient(900px 520px at 15% 0%, rgba(255,79,163,.22), transparent 60%),
+        radial-gradient(720px 420px at 85% 20%, rgba(255,179,214,.14), transparent 60%),
+        radial-gradient(700px 500px at 50% 100%, rgba(255,255,255,.07), transparent 65%),
+        var(--bg);
+    }
+
+    .wrap{ max-width: 980px; margin: 0 auto; padding: 22px 14px 60px; }
+
+    .hero{
+      border:1px solid var(--line);
+      border-radius: var(--r);
+      background: linear-gradient(135deg, rgba(255,79,163,.20), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      padding: 22px 18px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero:before{
+      content:"";
+      position:absolute;
+      inset:-60px -80px auto auto;
+      width: 220px; height: 220px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,79,163,.40), transparent 60%);
+      filter: blur(1px);
+      transform: rotate(12deg);
+      opacity:.9;
+    }
+
+    .kicker{
+      color: var(--muted);
+      letter-spacing:.14em;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+    h1{ margin: 10px 0 6px; font-size: 34px; line-height: 1.05; }
+    .sub{ margin:0; color: var(--muted); font-size: 15px; line-height:1.55; }
+
+    .badge{
+      display:inline-block;
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .grid{ display:grid; gap:14px; margin-top:14px; }
+    @media(min-width:820px){ .grid{ grid-template-columns: 1.15fr .85fr; } }
+
+    .card{
+      border:1px solid var(--line);
+      background: var(--card);
+      border-radius: var(--r);
+      box-shadow: var(--shadow);
+      padding: 16px;
+    }
+    h2{ margin:0 0 10px; font-size: 16px; letter-spacing:.04em; }
+    p{ margin:0; color: var(--muted); font-size: 15px; line-height:1.7; }
+
+    .pink{ color: var(--pink); }
+    .divider{
+      height:1px; background: rgba(255,255,255,.10);
+      margin: 12px 0;
+    }
+
+    .btnRow{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 10px; }
+    .btn{
+      appearance:none; border:none;
+      padding: 11px 12px;
+      border-radius: 12px;
+      cursor:pointer;
+      font-size: 14px;
+      color: var(--text);
+      background: rgba(255,79,163,.18);
+      border:1px solid rgba(255,79,163,.40);
+    }
+    .btn.secondary{
+      background: rgba(255,255,255,.06);
+      border:1px solid var(--line);
+      color: var(--muted);
+    }
+
+    .audioBox{ display:grid; gap:10px; }
+    audio{ width: 100%; }
+
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    @media(min-width:820px){ .gallery{ grid-template-columns: repeat(3, 1fr); } }
+    .gallery img{
+      width:100%;
+      height: 240px;
+      object-fit: cover;
+      border-radius: 14px;
+      border:1px solid var(--line);
+      filter: saturate(1.05) contrast(1.02);
+    }
+
+    .footer{
+      margin-top: 18px;
+      text-align:center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <div class="kicker">felices 20</div>
+      <h1>melissa, hoy <span class="pink">te celebro</span>.</h1>
+      <p class="sub">abre esto con calma. y dale play a mi nota de voz cuando estés lista.</p>
+      <div class="badge">29 · 03 · 2026 — capítulo 20</div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h2>carta</h2>
+        <p>
+          felices 20, mi amor.<br><br>
+          me acuerdo de nuestro inicio, de aquellas luces en navidad y de sevilla.
+          y cada vez que vuelvo a esos momentos, me reafirmo en lo mismo: contigo lo simple se vuelve recuerdo.<br><br>
+          este año quiero quererte mejor: con atención, con detalles y con hechos.
+          que se note en lo pequeño, todos los días.<br><br>
+          te quiero. de verdad.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>mi nota de voz</h2>
+        <div class="audioBox">
+          <p>pulsa cuando estés tranquila 🤍</p>
+          <audio id="voice" controls preload="metadata">
+            <source src="assets/nota.m4a" type="audio/mp4">
+            <source src="assets/nota.mp3" type="audio/mpeg">
+            tu navegador no soporta audio.
+          </audio>
+
+          <div class="btnRow">
+            <button class="btn" id="playBtn">▶ reproducir</button>
+            <button class="btn secondary" id="restartBtn">↺ empezar desde 0:00</button>
+          </div>
+
+          <div class="divider"></div>
+          <p style="color:rgba(255,255,255,.60); font-size:13px;">
+            tip: mejor con los airpods.
+          </p>
+        </div>
+      </div>
+
+      <div class="card" style="grid-column:1/-1;">
+        <h2>fotos</h2>
+        <div class="gallery">
+          <img src="assets/1.jpg" alt="foto 1">
+          <img src="assets/2.jpg" alt="foto 2">
+          <img src="assets/3.jpg" alt="foto 3">
+          <img src="assets/4.jpg" alt="foto 4">
+          <img src="assets/5.jpg" alt="foto 5">
+          <img src="assets/6.jpg" alt="foto 6">
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">hecho para ti 🤍</div>
+  </div>
+
+  <script>
+    const audio = document.getElementById('voice');
+    document.getElementById('playBtn').addEventListener('click', () => {
+      if (audio.paused) audio.play();
+      else audio.pause();
+    });
+    document.getElementById('restartBtn').addEventListener('click', () => {
+      audio.currentTime = 0;
+      audio.play();
+    });
+  </script>
+</body>
+</html>
