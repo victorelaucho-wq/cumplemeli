@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Melissa · 20</title>
+
   <style>
     :root{
       --bg:#0b0b10;
@@ -12,10 +13,12 @@
       --text:#ffffff;
       --muted:rgba(255,255,255,.72);
       --pink:#ff4fa3;
+      --pink2:#ffb3d6;
       --shadow:0 18px 45px rgba(0,0,0,.48);
       --r:18px;
       font-family:-apple-system,BlinkMacSystemFont,Inter,system-ui,Segoe UI,Roboto,Arial;
     }
+
     body{
       margin:0;
       color:var(--text);
@@ -24,73 +27,189 @@
         radial-gradient(720px 420px at 85% 20%, rgba(255,179,214,.14), transparent 60%),
         radial-gradient(700px 500px at 50% 100%, rgba(255,255,255,.07), transparent 65%),
         var(--bg);
+      overflow-x:hidden;
     }
-    .wrap{ max-width: 980px; margin: 0 auto; padding: 22px 14px 60px; }
+
+    /* pétalos/partículas rosas (sutil) */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.28;
+      background:
+        radial-gradient(8px 5px at 12% 18%, rgba(255,179,214,.65), transparent 60%),
+        radial-gradient(9px 6px at 28% 35%, rgba(255,79,163,.55), transparent 60%),
+        radial-gradient(8px 5px at 45% 12%, rgba(255,179,214,.55), transparent 60%),
+        radial-gradient(10px 6px at 66% 24%, rgba(255,79,163,.50), transparent 60%),
+        radial-gradient(8px 5px at 82% 16%, rgba(255,179,214,.55), transparent 60%),
+        radial-gradient(9px 6px at 90% 46%, rgba(255,79,163,.45), transparent 60%),
+        radial-gradient(8px 5px at 18% 62%, rgba(255,179,214,.45), transparent 60%),
+        radial-gradient(10px 6px at 38% 74%, rgba(255,79,163,.45), transparent 60%),
+        radial-gradient(8px 5px at 56% 62%, rgba(255,179,214,.45), transparent 60%),
+        radial-gradient(10px 6px at 74% 78%, rgba(255,79,163,.40), transparent 60%),
+        radial-gradient(8px 5px at 88% 86%, rgba(255,179,214,.40), transparent 60%);
+      filter: blur(.2px);
+    }
+
+    .wrap{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 18px 14px 60px;
+    }
+
     .hero{
-      border:1px solid var(--line);
+      border:1px solid rgba(255,79,163,.28);
       border-radius: var(--r);
-      background: linear-gradient(135deg, rgba(255,79,163,.20), rgba(255,255,255,.03));
+      background: linear-gradient(135deg, rgba(255,79,163,.24), rgba(255,255,255,.03));
       box-shadow: var(--shadow);
-      padding: 22px 18px;
+      padding: 18px 16px;
+      position: relative;
+      overflow: hidden;
     }
-    .kicker{ color: var(--muted); letter-spacing:.14em; text-transform: uppercase; font-size: 12px; }
-    h1{ margin: 10px 0 6px; font-size: 34px; line-height: 1.05; }
-    .sub{ margin:0; color: var(--muted); font-size: 15px; line-height:1.55; }
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:auto -120px -120px auto;
+      width:260px;height:260px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,79,163,.45), transparent 60%);
+      opacity:.7;
+      transform: rotate(15deg);
+    }
+
+    .kicker{
+      color: rgba(255,255,255,.75);
+      letter-spacing:.14em;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+
+    h1{
+      margin: 10px 0 6px;
+      font-size: 30px;
+      line-height: 1.05;
+    }
+
+    .sub{
+      margin:0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height:1.55;
+      max-width: 52ch;
+    }
+
     .badge{
       display:inline-block;
       margin-top: 12px;
-      padding: 10px 12px;
+      padding: 9px 11px;
       border-radius: 999px;
-      border: 1px solid var(--line);
+      border: 1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.06);
-      color: var(--muted);
+      color: rgba(255,255,255,.75);
       font-size: 13px;
     }
-    .grid{ display:grid; gap:14px; margin-top:14px; }
-    @media(min-width:820px){ .grid{ grid-template-columns: 1.15fr .85fr; } }
+
+    /* móvil primero: todo en una columna para iPhone 13 */
+    .grid{
+      display:grid;
+      gap:14px;
+      margin-top:14px;
+      grid-template-columns: 1fr;
+    }
+
+    /* en pantallas grandes, dos columnas */
+    @media(min-width:820px){
+      .grid{ grid-template-columns: 1.1fr .9fr; }
+      h1{ font-size: 34px; }
+    }
+
     .card{
-      border:1px solid var(--line);
-      background: var(--card);
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
       border-radius: var(--r);
       box-shadow: var(--shadow);
       padding: 16px;
     }
-    h2{ margin:0 0 10px; font-size: 16px; letter-spacing:.04em; }
-    p{ margin:0; color: var(--muted); font-size: 15px; line-height:1.7; }
-    .pink{ color: var(--pink); }
-    .btnRow{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 10px; }
+
+    h2{
+      margin:0 0 10px;
+      font-size: 16px;
+      letter-spacing:.04em;
+    }
+
+    p{
+      margin:0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height:1.7;
+    }
+
+    .pink{ color: var(--pink2); }
+
+    audio{ width:100%; }
+
+    .btnRow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top: 10px;
+    }
+
     .btn{
-      appearance:none; border:none;
+      appearance:none;
+      border:none;
       padding: 11px 12px;
       border-radius: 12px;
       cursor:pointer;
       font-size: 14px;
       color: var(--text);
-      background: rgba(255,79,163,.18);
-      border:1px solid rgba(255,79,163,.40);
+      background: rgba(255,79,163,.22);
+      border:1px solid rgba(255,79,163,.55);
+      box-shadow: 0 10px 25px rgba(255,79,163,.10);
     }
+
     .btn.secondary{
       background: rgba(255,255,255,.06);
-      border:1px solid var(--line);
-      color: var(--muted);
+      border:1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.80);
     }
+
+    .note{
+      margin-top:10px;
+      font-size:13px;
+      color: rgba(255,255,255,.66);
+      line-height:1.45;
+    }
+
+    /* ✅ galería: 2 columnas SIEMPRE (izquierda/derecha) */
     .gallery{
       display:grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr 1fr;
       gap: 10px;
+      margin-top: 6px;
     }
-    @media(min-width:820px){ .gallery{ grid-template-columns: repeat(4, 1fr); } }
+
     .gallery img{
       width:100%;
-      height: 240px;
+      height: 220px;
       object-fit: cover;
       border-radius: 14px;
-      border:1px solid var(--line);
-      filter: saturate(1.05) contrast(1.02);
+      border:1px solid rgba(255,179,214,.22);
+      box-shadow: 0 14px 28px rgba(0,0,0,.25);
+      filter: saturate(1.08) contrast(1.02);
     }
-    .footer{ margin-top: 18px; text-align:center; color: var(--muted); font-size: 13px; }
-    audio{ width:100%; }
-    .note{ margin-top:10px; font-size:12px; color: rgba(255,255,255,.55); line-height:1.4; }
+
+    /* que en escritorio no se vean demasiado bajitas */
+    @media(min-width:820px){
+      .gallery img{ height: 260px; }
+    }
+
+    .footer{
+      margin-top: 18px;
+      text-align:center;
+      color: rgba(255,255,255,.65);
+      font-size: 13px;
+    }
   </style>
 </head>
 
@@ -98,8 +217,8 @@
   <div class="wrap">
     <div class="hero">
       <div class="kicker">felices 20</div>
-      <h1>melissa, hoy <span class="pink">te celebro</span>.</h1>
-      <p class="sub">abre esto con calma. y dale play a mi nota de voz cuando estés lista.</p>
+      <h1>melissa, hoy <span class="pink">te celebro como te mereces</span>.</h1>
+      <p class="sub">esto es solo nuestro. abre con calma y escucha mi nota de voz cuando estés lista.</p>
       <div class="badge">29 · 03 · 2026 — capítulo 20</div>
     </div>
 
@@ -108,20 +227,18 @@
         <h2>carta</h2>
         <p>
           felices 20, mi amor.<br><br>
-          me acuerdo de nuestro inicio, de aquellas luces en navidad y de sevilla.
-          y cada vez que vuelvo a esos momentos, me reafirmo en lo mismo: contigo lo simple se vuelve recuerdo.<br><br>
-          este año quiero quererte mejor: con atención, con detalles y con hechos.
-          que se note en lo pequeño, todos los días.<br><br>
+          me acuerdo de nuestro inicio, de aquellas luces en navidad y de sevilla. y cada vez que vuelvo a esos momentos,
+          me reafirmo en lo mismo: contigo lo simple se vuelve recuerdo.<br><br>
+          este año quiero quererte mejor: con atención, con detalles y con hechos. que se note en lo pequeño, todos los días.<br><br>
           te quiero. de verdad.
         </p>
       </div>
 
       <div class="card">
         <h2>mi nota de voz</h2>
-        <p>pulsa play cuando estés tranquila 🤍</p>
+        <p>pulsa play cuando estés <span class="pink">más tranquila</span> 🤍</p>
 
         <audio id="voice" controls preload="metadata">
-          <!-- IMPORTANTE: el espacio va como %20 -->
           <source src="audio%20cumple.m4a" type="audio/mp4">
           <source src="audio%20cumple.mp3" type="audio/mpeg">
           tu navegador no soporta audio.
@@ -133,12 +250,12 @@
         </div>
 
         <div class="note">
-          si no suena, casi siempre es por el nombre del archivo. en tu repo está como <b>audio cumple.m4a</b>.
+          consejo: escúchalo con tus <b>nuevos AirPods</b> y sin prisas. 🤍
         </div>
       </div>
 
+      <!-- sin título “fotos” -->
       <div class="card" style="grid-column:1/-1;">
-        <h2>fotos</h2>
         <div class="gallery">
           <img src="1.jpeg" alt="foto 1">
           <img src="2.jpeg" alt="foto 2">
