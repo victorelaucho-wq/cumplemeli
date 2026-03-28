@@ -55,7 +55,7 @@
     .wrap{
       max-width: 980px;
       margin: 0 auto;
-      padding: 18px 14px 60px;
+      padding: 14px 14px 46px; /* un pelín menos para que quepa todo en móvil */
     }
 
     .hero{
@@ -63,7 +63,7 @@
       border-radius: var(--r);
       background: linear-gradient(135deg, rgba(255,79,163,.24), rgba(255,255,255,.03));
       box-shadow: var(--shadow);
-      padding: 18px 16px;
+      padding: 16px 14px;
       position: relative;
       overflow: hidden;
     }
@@ -86,21 +86,21 @@
 
     h1{
       margin: 10px 0 6px;
-      font-size: 30px;
+      font-size: 28px; /* un pelín más compacto para móvil */
       line-height: 1.05;
     }
 
     .sub{
       margin:0;
       color: var(--muted);
-      font-size: 15px;
+      font-size: 14px;
       line-height:1.55;
       max-width: 52ch;
     }
 
     .badge{
       display:inline-block;
-      margin-top: 12px;
+      margin-top: 10px;
       padding: 9px 11px;
       border-radius: 999px;
       border: 1px solid rgba(255,255,255,.12);
@@ -109,18 +109,45 @@
       font-size: 13px;
     }
 
-    /* móvil primero: todo en una columna para iPhone 13 */
+    /* ✅ collage 2x2 arriba (sin scroll) */
+    .photoGrid{
+      margin-top: 12px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      position: relative;
+      z-index: 1; /* por encima del brillo del hero */
+    }
+    .photoGrid a{
+      display:block;
+      border-radius: 14px;
+      overflow:hidden;
+      border:1px solid rgba(255,179,214,.25);
+      box-shadow: 0 14px 28px rgba(0,0,0,.25);
+      transform: translateZ(0);
+      background: rgba(255,255,255,.04);
+    }
+    .photoGrid img{
+      width:100%;
+      height: 105px; /* clave: que quepa en iPhone sin scroll */
+      object-fit: cover;
+      display:block;
+      filter: saturate(1.08) contrast(1.02);
+    }
+
+    /* móvil primero: todo en una columna */
     .grid{
       display:grid;
-      gap:14px;
-      margin-top:14px;
+      gap:12px;
+      margin-top:12px;
       grid-template-columns: 1fr;
     }
 
-    /* en pantallas grandes, dos columnas */
+    /* escritorio: dos columnas */
     @media(min-width:820px){
-      .grid{ grid-template-columns: 1.1fr .9fr; }
+      .grid{ grid-template-columns: 1.1fr .9fr; gap:14px; }
       h1{ font-size: 34px; }
+      .photoGrid img{ height: 140px; }
     }
 
     .card{
@@ -128,7 +155,7 @@
       background: rgba(255,255,255,.06);
       border-radius: var(--r);
       box-shadow: var(--shadow);
-      padding: 16px;
+      padding: 14px;
     }
 
     h2{
@@ -181,31 +208,8 @@
       line-height:1.45;
     }
 
-    /* ✅ galería: 2 columnas SIEMPRE (izquierda/derecha) */
-    .gallery{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 6px;
-    }
-
-    .gallery img{
-      width:100%;
-      height: 220px;
-      object-fit: cover;
-      border-radius: 14px;
-      border:1px solid rgba(255,179,214,.22);
-      box-shadow: 0 14px 28px rgba(0,0,0,.25);
-      filter: saturate(1.08) contrast(1.02);
-    }
-
-    /* que en escritorio no se vean demasiado bajitas */
-    @media(min-width:820px){
-      .gallery img{ height: 260px; }
-    }
-
     .footer{
-      margin-top: 18px;
+      margin-top: 16px;
       text-align:center;
       color: rgba(255,255,255,.65);
       font-size: 13px;
@@ -220,6 +224,14 @@
       <h1>melissa, hoy <span class="pink">te celebro como te mereces</span>.</h1>
       <p class="sub">esto es solo nuestro. abre con calma y escucha mi nota de voz cuando estés lista.</p>
       <div class="badge">29 · 03 · 2026 — capítulo 20</div>
+
+      <!-- ✅ fotos arriba, sin scroll -->
+      <div class="photoGrid">
+        <a href="1.jpeg" target="_blank" rel="noopener"><img src="1.jpeg" alt="foto 1"></a>
+        <a href="2.jpeg" target="_blank" rel="noopener"><img src="2.jpeg" alt="foto 2"></a>
+        <a href="3.jpeg" target="_blank" rel="noopener"><img src="3.jpeg" alt="foto 3"></a>
+        <a href="4.jpeg" target="_blank" rel="noopener"><img src="4.jpeg" alt="foto 4"></a>
+      </div>
     </div>
 
     <div class="grid">
@@ -253,16 +265,6 @@
           consejo: escúchalo con tus <b>nuevos AirPods</b> y sin prisas. 🤍
         </div>
       </div>
-
-      <!-- sin título “fotos” -->
-      <div class="card" style="grid-column:1/-1;">
-        <div class="gallery">
-          <img src="1.jpeg" alt="foto 1">
-          <img src="2.jpeg" alt="foto 2">
-          <img src="3.jpeg" alt="foto 3">
-          <img src="4.jpeg" alt="foto 4">
-        </div>
-      </div>
     </div>
 
     <div class="footer">hecho para ti 🤍</div>
@@ -281,3 +283,11 @@
   </script>
 </body>
 </html>
+Alternativas (por si quieres otra estética)
+
+Si el collage 2×2 te parece “muy mini”, tengo 2 opciones más:
+
+Una foto grande arriba (portada) y las otras 3 pequeñitas en fila debajo.
+Carrusel horizontal (tipo Instagram) dentro del hero, sin ocupar altura.
+
+Si me dices cuál te gusta más (1 = portada grande / 2 = carrusel), te paso la variante exacta.
